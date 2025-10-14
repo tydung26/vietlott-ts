@@ -1,5 +1,5 @@
 {
-  "name": "vietlott-data-js",
+  "name": "vietlott-ts",
   "version": "0.1.0",
   "description": "TypeScript implementation for crawling Vietnamese lottery data",
   "main": "dist/index.js",
