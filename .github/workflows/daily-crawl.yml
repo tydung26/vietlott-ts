@@ -43,6 +43,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build TypeScript
+        run: pnpm build
+
       - name: Run Power 6/45 crawler
         run: pnpm crawl power_645
 
@@ -79,6 +82,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Build TypeScript
+        run: pnpm build
 
       - name: Run Power 6/55 crawler
         run: pnpm crawl power_655
