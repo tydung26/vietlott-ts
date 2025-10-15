@@ -15,7 +15,11 @@ export interface FetcherOptions {
 /**
  * Generate a curl command for debugging
  */
-export function generateCurlCommand(url: string, body: any, headers: Record<string, string>): string {
+export function generateCurlCommand(
+  url: string,
+  body: any,
+  headers: Record<string, string>
+): string {
   const headerArgs = Object.entries(headers)
     .map(([key, value]) => `-H '${key}: ${value}'`)
     .join(' \\\n  ');
@@ -45,9 +49,9 @@ export async function fetchData(options: FetcherOptions, task: Task): Promise<an
 
     // Log curl command
     // const curlCommand = generateCurlCommand(urlWithParams.toString(), body, HEADERS);
-    // console.log('\n=== CURL Command ===');
-    // console.log(curlCommand);
-    // console.log('===================\n');
+    // logger.info('\n=== CURL Command ===');
+    // logger.info(curlCommand);
+    // logger.info('===================\n');
 
     // Create abort controller for timeout
     const controller = new AbortController();

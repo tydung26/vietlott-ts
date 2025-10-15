@@ -11,37 +11,37 @@ This is a TypeScript-based crawler for Vietnamese lottery (Vietlott) data. It fe
 ### Development
 ```bash
 # Run in development mode with hot reload
-npm run dev
+pnpm dev
 
 # Run specific product
-npm run dev power_655
-npm run dev keno
+pnpm dev power_655
+pnpm dev keno
 
 # Run with options (note the -- separator)
-npm run dev -- --run-date 2025-10-14
-npm run dev -- --index-from 0 --index-to 5
-npm run dev power_645 -- --run-date 2025-10-14
+pnpm dev -- --run-date 2025-10-14
+pnpm dev -- --index-from 0 --index-to 5
+pnpm dev power_645 -- --run-date 2025-10-14
 
 # Enable debug logging
-LOG_LEVEL=DEBUG npm run dev
+LOG_LEVEL=debug pnpm dev
 ```
 
 ### Building and Running
 ```bash
 # Build TypeScript to JavaScript
-npm run build
+pnpm build
 
 # Run compiled code
-npm run crawl
+pnpm crawl
 ```
 
 ### Code Quality
 ```bash
 # Lint TypeScript files
-npm run lint
+pnpm lint
 
 # Format code with Prettier
-npm run format
+pnpm format
 ```
 
 ## Architecture
@@ -61,7 +61,7 @@ npm run format
 **Product Configuration** ([src/config/products.ts](src/config/products.ts))
 - Centralized config for all lottery products
 - Defines: data file path, number ranges, output size, interval days, thread count, page size
-- Data files stored in `../data/` directory (one level up from project root)
+- Data files stored in `data/` directory in project root
 
 **Crawler Classes** ([src/crawler/](src/crawler/))
 - Each product has its own crawler (e.g., Power645Crawler, KenoCrawler)
@@ -87,9 +87,16 @@ npm run format
 - Parses CLI arguments: `--product`, `--run-date`, `--index-from`, `--index-to`
 - Product name can be passed as first positional argument OR via `--product` flag
 
+**Logger** ([src/utils/logger.ts](src/utils/logger.ts))
+- Uses Pino for high-performance logging
+- Automatically enables pretty-printing in development (colorized output with timestamps)
+- JSON output in production for machine parsing
+- Log levels: trace, debug, info, warn, error, fatal
+- Controlled via `LOG_LEVEL` environment variable (default: info)
+
 ### Data Flow
 
-1. User runs `npm run dev [product] -- [options]`
+1. User runs `pnpm dev [product] -- [options]`
 2. CLI parser extracts product name and options
 3. Appropriate crawler instance is created from `CRAWLER_MAP`
 4. Crawler generates tasks (one per page index)
@@ -100,7 +107,7 @@ npm run format
 
 ### File Storage
 
-- Data files: `../data/power645.jsonl`, `../data/keno.jsonl`, etc.
+- Data files: `data/power645.jsonl`, `data/keno.jsonl`, etc.
 - Format: Each line is a complete JSON object (JSONL format)
 - Compatible with Python version of this crawler
 - Automatic deduplication by lottery draw ID

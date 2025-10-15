@@ -10,7 +10,7 @@ TypeScript implementation for crawling Vietnamese lottery (Vietlott) data from t
 - Automatic deduplication and data merging
 - JSONL storage format for efficient data storage
 - Timezone-aware date handling (Asia/Ho_Chi_Minh)
-- Comprehensive logging system with configurable levels
+- Production-ready logging with [Pino](https://github.com/pinojs/pino) and pretty-printing in development
 
 ## Requirements
 
@@ -77,7 +77,9 @@ pnpm crawl [product] [options]
 
 ## Environment Variables
 
-- `LOG_LEVEL`: Set log level (`DEBUG`, `INFO`, `WARN`, `ERROR`). Default: `INFO`
+- `LOG_LEVEL`: Set log level (`trace`, `debug`, `info`, `warn`, `error`, `fatal`). Default: `info`
+- `NODE_ENV`: When set to `production`, logs are output in JSON format. Otherwise, pretty-printed with colors
+- `NO_PRETTY_LOGS`: Set to disable pretty-printing even in non-production environments
 
 ## Supported Lottery Products
 

@@ -9,7 +9,8 @@
     "crawl": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "lint": "eslint src --ext .ts",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "vitest"
   },
   "keywords": [
     "vietlott",
@@ -21,7 +22,9 @@
   "license": "MIT",
   "dependencies": {
     "date-fns": "^3.6.0",
-    "date-fns-tz": "^3.2.0"
+    "date-fns-tz": "^3.2.0",
+    "pino": "^10.0.0",
+    "pino-pretty": "^13.1.2"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
@@ -30,6 +33,7 @@
     "eslint": "^8.54.0",
     "prettier": "^3.1.0",
     "tsx": "^4.7.0",
-    "typescript": "^5.3.0"
+    "typescript": "^5.3.0",
+    "vitest": "^3.2.4"
   }
 }

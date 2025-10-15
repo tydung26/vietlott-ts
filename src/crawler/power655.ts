@@ -8,7 +8,8 @@ import { logger } from '../utils/logger.js';
 import path from 'path';
 
 export class Power655Crawler {
-  private readonly url = 'https://vietlott.vn/ajaxpro/Vietlott.PlugIn.WebParts.Game655CompareWebPart,Vietlott.PlugIn.WebParts.ashx';
+  private readonly url =
+    'https://vietlott.vn/ajaxpro/Vietlott.PlugIn.WebParts.Game655CompareWebPart,Vietlott.PlugIn.WebParts.ashx';
   private readonly config = power655Config;
 
   private createRequestBody(pageIndex: number): RequestPower655 {
@@ -16,13 +17,15 @@ export class Power655Crawler {
       ORenderInfo: DEFAULT_ORENDER_INFO,
       Key: '23bbd667',
       GameDrawId: '',
-      ArrayNumbers: Array(5).fill(null).map(() => Array(18).fill('')),
+      ArrayNumbers: Array(5)
+        .fill(null)
+        .map(() => Array(18).fill('')),
       CheckMulti: false,
       PageIndex: pageIndex,
     };
   }
 
-  private parseResult(responseData: any, pageIndex: number): LotteryResult[] {
+  public parseResult(responseData: any, pageIndex: number): LotteryResult[] {
     const results: LotteryResult[] = [];
 
     try {
@@ -35,8 +38,9 @@ export class Power655Crawler {
 
       const html = data.value.HtmlContent as string;
 
-      // Parse each table row - Power 655 has similar structure to 645
-      const rowRegex = /<tr>\s*<td>(\d{2}\/\d{2}\/\d{4})<\/td>\s*<td[^>]*>([^<]+)<\/td>\s*<td>([\s\S]*?)<\/td>\s*<\/tr>/g;
+      // Parse each table row - Power 655 has ID wrapped in <a> tag
+      const rowRegex =
+        /<tr>\s*<td>(\d{2}\/\d{2}\/\d{4})<\/td>\s*<td[^>]*><a[^>]*>([^<]+)<\/a><\/td>\s*<td>([\s\S]*?)<\/td>\s*<\/tr>/g;
 
       let match;
       while ((match = rowRegex.exec(html)) !== null) {
@@ -57,7 +61,8 @@ export class Power655Crawler {
         const [day, month, year] = dateStr.split('/');
         const isoDate = `${year}-${month}-${day}`;
 
-        if (numbers.length === 7) { // 6 main numbers + 1 bonus number
+        if (numbers.length === 7) {
+          // 6 main numbers + 1 bonus number
           results.push({
             date: isoDate,
             id: id,
