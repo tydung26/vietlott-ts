@@ -46,6 +46,13 @@ jobs:
       - name: Build TypeScript
         run: pnpm build
 
+      - name: Verify build output
+        run: |
+          echo "Checking dist folder..."
+          ls -la dist/
+          echo "Checking dist/index.js..."
+          ls -la dist/index.js
+
       - name: Run Power 6/45 crawler
         run: pnpm crawl power_645
 
@@ -85,6 +92,13 @@ jobs:
 
       - name: Build TypeScript
         run: pnpm build
+
+      - name: Verify build output
+        run: |
+          echo "Checking dist folder..."
+          ls -la dist/
+          echo "Checking dist/index.js..."
+          ls -la dist/index.js
 
       - name: Run Power 6/55 crawler
         run: pnpm crawl power_655
