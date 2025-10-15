@@ -101,6 +101,13 @@ export async function fetchTasks(
       `Processing batch ${Math.floor(i / concurrency) + 1}/${Math.ceil(tasks.length / concurrency)}`
     );
 
+    // Add delay between batches to avoid rate limiting (except for first batch)
+    if (i > 0) {
+      const delay = 1000 + Math.random() * 1000; // Random delay 1-2 seconds
+      logger.debug(`Waiting ${Math.round(delay)}ms before next batch...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+
     const batchPromises = batch.map(task =>
       fetchData(options, task).catch(error => {
         logger.error(`Task ${task.taskId} failed: ${error.message}`);
