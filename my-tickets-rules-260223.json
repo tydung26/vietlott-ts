@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-02-23T13:20:00",
+  "method": "rule-based-brute-force",
+  "rules_applied": [
+    "Sum between 101-177",
+    "3-4 odd numbers, 2-3 even numbers",
+    "2-4 low numbers (1-22), 2-4 high (23-45)",
+    "Spread 28-42",
+    "Cover 4-5 decades",
+    "0-2 consecutive pairs",
+    "No historical 5/6 or 6/6 matches"
+  ],
+  "tickets": [
+    [1, 13, 16, 26, 30, 34],
+    [7, 8, 17, 24, 31, 35],
+    [4, 10, 19, 23, 26, 32],
+    [7, 10, 11, 22, 29, 36],
+    [5, 13, 15, 22, 33, 36],
+    [4, 14, 17, 25, 30, 35],
+    [3, 4, 11, 26, 27, 35],
+    [7, 9, 10, 25, 36, 38]
+  ]
+}

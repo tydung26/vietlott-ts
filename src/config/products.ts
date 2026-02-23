@@ -18,7 +18,7 @@ export const power645Config: ProductConfig = {
   intervalDays: 2,
   numThreads: 10,
   useCookies: false,
-  defaultIndexTo: 1,
+  defaultIndexTo: 21,
   pageSize: 6,
 };
 
